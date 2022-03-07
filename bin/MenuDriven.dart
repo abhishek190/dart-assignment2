@@ -2,10 +2,21 @@ import 'dart:io';
 import '../bin/StudentInfo.dart';
 import '../bin/CourseInfo.dart';
 import '../bin/ExceptionHandling.dart';
+import '../bin/UserJsonSerializable.dart';
 import 'UtilityClass.dart';
+import 'File.dart';
+
 Future<void> main() async {
   late List<StudentDetails> userDetails = <StudentDetails>[];
 
+  //read file
+  final File file = File('DataCopy.txt');
+  if (await file.exists()) {
+    var contents = await file.readAsString();
+    if (contents.isNotEmpty) {
+      userDetails.add(readFile(contents)!);
+    }
+  }
 
   String? flag = 'y';
   outerloop:
@@ -15,7 +26,7 @@ Future<void> main() async {
     String? option = stdin.readLineSync();
     switch (option) {
       case '1':
-        //User Credential
+      //User Credential
         var fullName, age, address, roll;
         List<String> course = [];
         print("Enter Student Details:");
@@ -65,7 +76,7 @@ Future<void> main() async {
 
           //Student_Details instance
           StudentDetails user =
-              StudentDetails(fullName, age, address, roll, courseObject);
+          StudentDetails(fullName, age, address, roll, courseObject);
 
           //User Details added
           userDetails.add(user);
@@ -119,6 +130,21 @@ Future<void> main() async {
 
         break;
       case '4':
+        List<dynamic> addUserDetailsToFile = [];
+
+        for (int i = 0; i < userDetails.length; i++) {
+          var map1 = UserJsonSerializable(
+              userDetails[i].fullName,
+              userDetails[i].age,
+              userDetails[i].address,
+              userDetails[i].rollNo,
+              userDetails[i].course);
+
+          addUserDetailsToFile.add(map1.toJson());
+        }
+
+        //write File
+        writeFile(addUserDetailsToFile);
         break;
       case '5':
         break outerloop;
