@@ -7,23 +7,23 @@ part of 'UserJsonSerializable.dart';
 // **************************************************************************
 
 UserJsonSerializable _$UserJsonSerializableFromJson(
-        Map<String, dynamic> json) =>
+    Map<String, dynamic> json) =>
     UserJsonSerializable(
-      json['fullName'] as String?,
-      json['age'] as int?,
-      json['address'] as String?,
-      json['rollNo'] as int?,
-      (json['course'] as List<dynamic>)
-          .map((e) => Course.fromJson(e as Map<String, dynamic>))
-          .toList(),
+          json['fullName'] as String?,
+          json['age'] as int?,
+          json['address'] as String?,
+          json['rollNo'] as int?,
+          (json['course'] as List<dynamic>)
+              .map((e) => Course.fromJson(e as Map<String, dynamic>))
+              .toList(),
     );
 
 Map<String, dynamic> _$UserJsonSerializableToJson(
-        UserJsonSerializable instance) =>
+    UserJsonSerializable instance) =>
     <String, dynamic>{
-      'fullName': instance.fullName,
-      'age': instance.age,
-      'address': instance.address,
-      'rollNo': instance.rollNo,
-      'course': instance.course.map((e) => e.toJson()).toList(),
+          'fullName': instance.fullName,
+          'age': instance.age,
+          'address': instance.address,
+          'rollNo': instance.rollNo,
+          'course': instance.course.map((e) => e.toJson()).toList(),
     };

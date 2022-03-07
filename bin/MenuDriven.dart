@@ -26,7 +26,7 @@ Future<void> main() async {
     String? option = stdin.readLineSync();
     switch (option) {
       case '1':
-      //User Credential
+        //User Credential
         var fullName, age, address, roll;
         List<String> course = [];
         print("Enter Student Details:");
@@ -76,7 +76,7 @@ Future<void> main() async {
 
           //Student_Details instance
           StudentDetails user =
-          StudentDetails(fullName, age, address, roll, courseObject);
+              StudentDetails(fullName, age, address, roll, courseObject);
 
           //User Details added
           userDetails.add(user);
